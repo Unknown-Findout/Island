@@ -12,6 +12,11 @@ import { VoiceOrb, VoiceWave } from "./VoiceOrb";
  * a compact leading and trailing view, a minimal view, and an expanded view in
  * four regions. The island (IslandSystem) owns placement, size and motion.
  *
+ * Minimal views carry NO layoutId. Two activities can swap between the
+ * attached and detached spots in one update, and a shared element caught in
+ * that swap was left at opacity 0, 265 px off to the side (seen 2026-09-27).
+ * Apple ties the move to compact <-> expanded, and so does this.
+ *
  * Elements that exist in more than one presentation carry a `layoutId`, so when
  * the island expands the album art or the orb MOVES to its new place instead of
  * fading out and back in. That is Apple's rule: "preserve as much of the
@@ -80,7 +85,7 @@ export function Avatar({ agent, size, pulse, layoutId }: { agent: string; size: 
       ) : null}
       <div
         className="relative flex h-full w-full items-center justify-center rounded-full font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]"
-        style={{ background: `linear-gradient(145deg, ${look.from}, ${look.to})`, fontSize: size * 0.45 }}
+        style={{ background: look.bg ?? `linear-gradient(145deg, ${look.from}, ${look.to})`, fontSize: size * 0.45 }}
       >
         {look.name.charAt(0)}
       </div>
@@ -187,7 +192,7 @@ function presentMedia(id: string, np: NowPlaying, ctx: PresentCtx): Presentation
     keyline: ctx.artColor,
     compactLeading: <Art np={np} size={23} radius={6} layoutId={`${id}:art`} />,
     compactTrailing: <Bars color={ctx.artColor} playing={playing} height={14} layoutId={`${id}:bars`} />,
-    minimal: <Bars color={ctx.artColor} playing={playing} height={13} layoutId={`${id}:bars`} />,
+    minimal: <Bars color={ctx.artColor} playing={playing} height={13} />,
     expanded: {
       leading: <Art np={np} size={56} radius={14} layoutId={`${id}:art`} />,
       center: (
@@ -294,7 +299,7 @@ function presentAgent(a: Activity, ctx: PresentCtx): Presentation {
         {look.name}
       </motion.span>
     ),
-    minimal: <Avatar agent={t.agent} size={23} pulse={live} layoutId={`${id}:avatar`} />,
+    minimal: <Avatar agent={t.agent} size={23} pulse={live} />,
     expanded: {
       leading: <Avatar agent={t.agent} size={44} pulse={live} layoutId={`${id}:avatar`} />,
       center: (
@@ -418,7 +423,7 @@ function presentVoice(a: Activity, ctx: PresentCtx): Presentation {
     keyline: "#A855F7",
     compactLeading: <motion.div layoutId={`${id}:orb`}><VoiceOrb size={24} level={lvl} state={v.state} /></motion.div>,
     compactTrailing: <motion.div layoutId={`${id}:wave`}><VoiceWave level={v.state === "thinking" ? 0.15 : lvl} height={16} /></motion.div>,
-    minimal: <motion.div layoutId={`${id}:orb`}><VoiceOrb size={24} level={lvl} state={v.state} /></motion.div>,
+    minimal: <VoiceOrb size={24} level={lvl} state={v.state} />,
     expanded: {
       leading: <motion.div layoutId={`${id}:orb`}><VoiceOrb size={50} level={lvl} state={v.state} /></motion.div>,
       center: (

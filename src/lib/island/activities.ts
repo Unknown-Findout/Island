@@ -30,7 +30,11 @@ class Registry {
   private lastMediaJson = "";
 
   list(): Activity[] {
-    return Array.from(this.items.values()).sort((a, b) => b.priority - a.priority || b.startedAt - a.startedAt);
+    // Ties broken by id, so two activities started in the same millisecond can
+    // never trade places between one update and the next.
+    return Array.from(this.items.values()).sort(
+      (a, b) => b.priority - a.priority || b.startedAt - a.startedAt || a.id.localeCompare(b.id)
+    );
   }
 
   subscribe(l: Listener) {

@@ -10,12 +10,26 @@ export interface AgentLook {
   to: string;
   /** The glow while this agent is thinking. */
   glow: string;
+  /** A full background for the disc when two stops are not enough. */
+  bg?: string;
 }
 
+// Wesley's picks, 2026-09-27: Katie purple, Charles orange, Astra a cosmic blue.
 const LOOKS: Record<string, AgentLook> = {
   katie: { name: "Katie", from: "#C084FC", to: "#7C3AED", glow: "rgba(168,85,247,0.65)" },
-  charles: { name: "Charles", from: "#FBBF24", to: "#B45309", glow: "rgba(245,158,11,0.55)" },
-  astra: { name: "Astra", from: "#67E8F9", to: "#0E7490", glow: "rgba(34,211,238,0.55)" },
+  charles: { name: "Charles", from: "#FDBA74", to: "#EA580C", glow: "rgba(249,115,22,0.6)" },
+  astra: {
+    name: "Astra",
+    from: "#7DD3FC",
+    to: "#1E3A8A",
+    glow: "rgba(56,130,246,0.6)",
+    // Cosmic: a bright core off-centre fading through blue into deep space,
+    // with two pinpoint stars, so it reads as a sky rather than a flat blue.
+    bg:
+      "radial-gradient(circle at 72% 30%, rgba(255,255,255,0.9) 0 1px, transparent 1.5px)," +
+      "radial-gradient(circle at 30% 70%, rgba(255,255,255,0.7) 0 0.8px, transparent 1.3px)," +
+      "radial-gradient(circle at 35% 30%, #7DD3FC 0%, #2563EB 42%, #1E1B4B 100%)",
+  },
   quill: { name: "Quill", from: "#5EEAD4", to: "#0F766E", glow: "rgba(45,212,191,0.55)" },
   jessica: { name: "Jessica", from: "#FDA4AF", to: "#BE123C", glow: "rgba(244,63,94,0.55)" },
   hex: { name: "Hex", from: "#86EFAC", to: "#15803D", glow: "rgba(34,197,94,0.55)" },
