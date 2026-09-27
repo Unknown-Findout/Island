@@ -33,7 +33,6 @@ const LOOKS: Record<string, AgentLook> = {
   quill: { name: "Quill", from: "#5EEAD4", to: "#0F766E", glow: "rgba(45,212,191,0.55)" },
   jessica: { name: "Jessica", from: "#FDA4AF", to: "#BE123C", glow: "rgba(244,63,94,0.55)" },
   hex: { name: "Hex", from: "#86EFAC", to: "#15803D", glow: "rgba(34,197,94,0.55)" },
-  glm: { name: "GLM", from: "#93C5FD", to: "#1D4ED8", glow: "rgba(59,130,246,0.55)" },
   wesley: { name: "Wesley", from: "#F5F5F5", to: "#737373", glow: "rgba(255,255,255,0.4)" },
 };
 

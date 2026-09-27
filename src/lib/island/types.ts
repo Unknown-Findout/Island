@@ -58,7 +58,8 @@ export interface Activity {
   voice?: VoiceActivity;
 }
 
-export type IslandEventKind = "thinking" | "reply" | "done" | "error";
+/** "end" removes the agent's activity quietly: no alert, nothing to read. */
+export type IslandEventKind = "thinking" | "reply" | "done" | "error" | "end";
 
 export interface IslandEvent {
   /** Groups the events of one turn: thinking -> reply -> done. */

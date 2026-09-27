@@ -4,7 +4,7 @@ import { bus, type IslandEventKind } from "@/lib/island/bus";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const KINDS: IslandEventKind[] = ["thinking", "reply", "done", "error"];
+const KINDS: IslandEventKind[] = ["thinking", "reply", "done", "error", "end"];
 
 /**
  * The door every agent uses to reach the island.

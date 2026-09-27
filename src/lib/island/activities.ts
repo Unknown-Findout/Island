@@ -116,6 +116,8 @@ class Registry {
   /** Agent turns from the bus become one activity per agent. */
   onAgentEvent(e: IslandEvent) {
     const id = `agent:${e.agent}`;
+    // A turn that was abandoned or cancelled leaves without an alert.
+    if (e.kind === "end") return this.end(id);
     if (e.kind === "thinking" || e.kind === "reply") {
       const prev = this.items.get(id);
       this.upsert({
