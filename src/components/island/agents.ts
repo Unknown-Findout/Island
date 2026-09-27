@@ -14,7 +14,9 @@ export interface AgentLook {
   bg?: string;
 }
 
-// Wesley's picks, 2026-09-27: Katie purple, Charles orange, Astra a cosmic blue.
+// The agents talking as of 2026-09-27, per Wesley: Katie, Charles, Astra.
+// Katie purple, Charles orange, Astra a cosmic blue (his picks). Anyone else
+// who posts gets a neutral grey disc rather than a colour of their own.
 const LOOKS: Record<string, AgentLook> = {
   katie: { name: "Katie", from: "#C084FC", to: "#7C3AED", glow: "rgba(168,85,247,0.65)" },
   charles: { name: "Charles", from: "#FDBA74", to: "#EA580C", glow: "rgba(249,115,22,0.6)" },
@@ -30,9 +32,6 @@ const LOOKS: Record<string, AgentLook> = {
       "radial-gradient(circle at 30% 70%, rgba(255,255,255,0.7) 0 0.8px, transparent 1.3px)," +
       "radial-gradient(circle at 35% 30%, #7DD3FC 0%, #2563EB 42%, #1E1B4B 100%)",
   },
-  quill: { name: "Quill", from: "#5EEAD4", to: "#0F766E", glow: "rgba(45,212,191,0.55)" },
-  jessica: { name: "Jessica", from: "#FDA4AF", to: "#BE123C", glow: "rgba(244,63,94,0.55)" },
-  hex: { name: "Hex", from: "#86EFAC", to: "#15803D", glow: "rgba(34,197,94,0.55)" },
   wesley: { name: "Wesley", from: "#F5F5F5", to: "#737373", glow: "rgba(255,255,255,0.4)" },
 };
 
